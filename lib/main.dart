@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hello/login.dart';
+import 'package:flutter_hello/webrtc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,6 +46,11 @@ class _MyHomePageState extends State<MyHomePage> {
         MaterialPageRoute(builder: (context) => const LoginPage(title: "Login")));
   }
 
+  void _moveToWebrtc() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => WebrtcPage(title: "Webrtc")));
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -75,6 +81,10 @@ class _MyHomePageState extends State<MyHomePage> {
               ElevatedButton(
                 onPressed: _moveToLogin,
                 child: const Text('Login')
+              ),
+              ElevatedButton(
+                  onPressed: _moveToWebrtc,
+                  child: const Text('webrtc')
               ),
             ],
           ),
