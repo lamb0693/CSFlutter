@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_hello/mypoint.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:flutter_webrtc/flutter_webrtc.dart' ;
 
@@ -200,6 +201,20 @@ class _WebrtcPage extends State<WebrtcPage> {
     socket.disconnect();
   }
 
+  void _testSocket () {
+    print("_testSocket");
+
+    List<Map<String, dynamic>> test = [];
+
+    test.add(MyPoint(124.5, 125.4).toMap());
+    test.add(MyPoint(122.3, 121.7).toMap());
+
+    print('test $test');
+
+    socket.emit('test', {'data': test});
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -230,6 +245,10 @@ class _WebrtcPage extends State<WebrtcPage> {
                 ElevatedButton(
                     onPressed: _join,
                     child: const Text('참가')
+                ),
+                ElevatedButton(
+                    onPressed:  _testSocket ,
+                    child: const Text('test')
                 ),
               ],
             ),
